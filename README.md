@@ -1,5 +1,5 @@
 # react-no-cra
-This is an react app which set up without create-react-app command.
+This is an react app which is set up without create-react-app command.
 
 To set up react app from scratch with webpack:
 * `npm init`
