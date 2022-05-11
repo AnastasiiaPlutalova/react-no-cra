@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 
+import './styles.scss';
+
 const CountClicks = () => {
     const [clicks, setClicks] = useState(0);
 
