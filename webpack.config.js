@@ -5,6 +5,9 @@ module.exports = {
     devServer: {
         port: 3000,
     },
+    resolve: {
+        extensions: ['.js','.jsx'] 
+    },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html'}),
     ],
@@ -18,6 +21,11 @@ module.exports = {
               "sass-loader",
             ],
           },
+          {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use:  'babel-loader'
+          }
         ],
       },
 }
