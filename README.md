@@ -23,3 +23,4 @@ HTML: `publick/index.html`
 
 ## Other branches
 * Simple CountClicks component without jsx: [no_jsx_components](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/no_jsx_components)  
+* Using context: [using_context](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/context) 
