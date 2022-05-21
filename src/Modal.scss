@@ -1,0 +1,27 @@
+.modal {
+    border: 1px solid #333;
+    width: 200px;
+    padding: 10px;
+
+    &__close {
+        width: 10px;
+        margin-left: auto;
+    }
+
+    &__content {
+        padding: 10px;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__confirm {
+        color: #006400;
+    }
+
+    &__decline {
+        color: #8B0000;
+    }
+}
