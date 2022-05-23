@@ -26,5 +26,5 @@ HTML: `publick/index.html`
 * Using context: [using_context](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/context) 
 * Simple modal with render prop content: [render_prop](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/render-props)
 * Refs: [refs](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/ref)
-  Get data from file input after for submission,
-  Set focus on nested text input
+  * Get data from file input after for submission,
+  * Set focus on nested text input
