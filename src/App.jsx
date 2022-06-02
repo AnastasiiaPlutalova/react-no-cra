@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FrontPage from './pages/FrontPage/FrontPage';
-import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
+import { FrontPage, StatisticsPage } from './pages';
 
 function App() {
   return (
