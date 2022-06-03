@@ -1,0 +1,10 @@
+.text-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+
+    &__label {
+        margin-bottom: 10px;
+    }
+}
