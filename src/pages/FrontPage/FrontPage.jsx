@@ -1,8 +1,15 @@
 import React from 'react';
-import UrlForm from '../../components/UrlForm/UrlForm';
+import { UrlForm, UrlsList } from '../../components';
 
 function FrontPage() {
-  return <UrlForm />;
+  const urls = [{ text: 'text', url: '/abc' }, { url: '/fgf' }];
+  return (
+    <>
+      <UrlForm />
+      Result URLs:
+      <UrlsList urls={urls} />
+    </>
+  );
 }
 
 export default FrontPage;
