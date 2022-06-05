@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import getRandomHash from '../../common/utils/get-random-hash';
+import { getRandomHash } from '../../common/utils';
 import { TextInput } from '../../units';
 
 import './UrlForm.scss';
