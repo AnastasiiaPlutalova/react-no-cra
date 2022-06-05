@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getRandomHash } from '../../common/utils';
-import { addUrl } from '../../redux/slices/urlsSlice';
+import PropTypes from 'prop-types';
 import { TextInput } from '../../units';
 
 import './UrlForm.scss';
 
 const r =
   /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-function UrlForm() {
-  const dispatch = useDispatch();
+function UrlForm({ handleFormSubmit }) {
   const [url, setUrl] = useState('');
   const [error, setError] = useState();
 
@@ -27,8 +24,7 @@ function UrlForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const originalUrl = event.target.url.value;
-    const hash = getRandomHash();
-    dispatch(addUrl({ originalUrl, hash }));
+    handleFormSubmit(originalUrl);
   };
 
   return (
@@ -47,5 +43,9 @@ function UrlForm() {
     </form>
   );
 }
+
+UrlForm.propTypes = {
+  handleFormSubmit: PropTypes.func.isRequired,
+};
 
 export default UrlForm;
