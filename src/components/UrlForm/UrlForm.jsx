@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import getRandomHash from '../../common/utils/get-random-hash';
 import { TextInput } from '../../units';
 
 import './UrlForm.scss';
@@ -22,6 +23,8 @@ function UrlForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const hash = getRandomHash();
+    console.log(hash);
   };
 
   return (
