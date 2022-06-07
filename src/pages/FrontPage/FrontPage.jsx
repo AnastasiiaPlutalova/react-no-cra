@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { UrlForm, UrlsList } from '../../components';
-import { addUrl } from '../../redux/slices/urlsSlice';
 import { getRandomHash } from '../../common/utils';
 
 function FrontPage() {
-  const dispatch = useDispatch();
   const [urls, setUrls] = useState(null);
 
-  const handleFormSubmit = (originalUrl) => {
+  const handleFormSubmit = async (originalUrl) => {
     const hash = getRandomHash();
-    dispatch(addUrl({ originalUrl, hash }));
-    setUrls([
-      { text: 'shorten URL', url: `/${hash}` },
-      { text: 'statistics page', url: `/statistics/${hash}` },
-    ]);
+    const urlData = { originalUrl, hash };
+    try {
+      await fetch('http://localhost:8080/api/urls', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(urlData),
+      });
+      setUrls([
+        { text: 'shorten URL', url: `/${hash}` },
+        { text: 'statistics page', url: `/statistics/${hash}` },
+      ]);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

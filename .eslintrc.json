@@ -20,7 +20,8 @@
         "prettier"
     ],
     "rules": {
-        "react/prefer-stateless-function": 0,
-        "quotes": [2, "single", "avoid-escape"]
+        "react/prefer-stateless-function": "off",
+        "quotes": ["warn", "single", "avoid-escape"],
+        "no-plusplus": "off"
     }
 }
