@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { FrontPage, StatisticsPage } from './pages';
+import { FrontPage, RedirectPage, StatisticsPage } from './pages';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="statistics" element={<StatisticsPage />} />
+        <Route path="/:hash" element={<RedirectPage />} />
       </Routes>
     </BrowserRouter>
   );
