@@ -8,7 +8,7 @@ function RedirectPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const query = `${process.env.REACT_APP_API_URLS}?shortUrl=${123}`;
+        const query = `${process.env.REACT_APP_API_URLS}?shortUrl=${window.location.href}`;
         const { originalUrl } = await get(query);
         setUrl(originalUrl);
         window.open(originalUrl, '_blank');
