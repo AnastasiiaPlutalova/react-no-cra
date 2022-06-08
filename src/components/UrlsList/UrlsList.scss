@@ -2,12 +2,13 @@
 
 .urls-list {
     padding: 0;
-    
+
     &__item {
         list-style-type: none;
     }
 
     &__icon {
         padding-right: $default-indent;
+        cursor: pointer;
     }
 }
