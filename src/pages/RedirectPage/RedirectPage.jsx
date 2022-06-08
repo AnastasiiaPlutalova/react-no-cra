@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { get } from '../../common/utils';
 
 function RedirectPage() {
-  const { hash } = useParams();
   const [url, setUrl] = useState();
+  const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`http://localhost:8080/api/urls/${hash}`, {
-        method: 'GET',
-      });
-      const { originalUrl } = await response.json();
-      setUrl(originalUrl);
-      window.open(originalUrl, '_blank');
+      try {
+        const query = `${process.env.REACT_APP_API_URLS}?shortUrl=${123}`;
+        const { originalUrl } = await get(query);
+        setUrl(originalUrl);
+        window.open(originalUrl, '_blank');
+      } catch (e) {
+        setError(e || e.message);
+      }
     }
 
     fetchData();
@@ -22,7 +24,7 @@ function RedirectPage() {
 
   const redirectMessage = () => `${url} is opened in a new tab.`;
 
-  return url ? redirectMessage() : loadingMessage();
+  return error || (url ? redirectMessage() : loadingMessage());
 }
 
 export default RedirectPage;

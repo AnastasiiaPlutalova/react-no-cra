@@ -27,7 +27,7 @@ function UrlsList({ urls }) {
           icon={item.url === copiedUrl ? faCheck : faCopy}
         />
         {text}:{' '}
-        <a href={url} title={text}>
+        <a href={url} title={text} target="_blank" rel="noreferrer">
           {url}
         </a>
       </li>
