@@ -1,11 +1,12 @@
 @import '../../common/styles/variables.scss';
 
 .urls-list {
+    padding: 0;
+    
     &__item {
         list-style-type: none;
-        padding: $default-indent;
     }
-    
+
     &__icon {
         padding-right: $default-indent;
     }

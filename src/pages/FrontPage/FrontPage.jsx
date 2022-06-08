@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
 import { UrlForm, UrlsList } from '../../components';
-import { getRandomHash, post } from '../../common/utils';
+import { getRandomHash, isUrl, post } from '../../common/utils';
+
+import './FrontPage.scss';
 
 function FrontPage() {
   const [urls, setUrls] = useState();
   const [error, setError] = useState();
 
   const handleFormSubmit = async (originalUrl) => {
-    const hash = getRandomHash();
-    const urlData = { originalUrl, hash };
-    try {
-      await post(process.env.REACT_APP_API_URLS, urlData);
-      setUrls([
-        { text: 'shorten URL', url: `/${hash}` },
-        { text: 'statistics page', url: `/statistics/${hash}` },
-      ]);
+    if (isUrl(originalUrl)) {
       setError(null);
-    } catch {
-      setError('Something went wrong');
+
+      const hash = getRandomHash();
+      const shortUrl = `${window.location.origin}/${hash}`;
+      const statisticsUrl = `${window.location.origin}/statistics/${hash}`;
+      const urlData = { originalUrl, shortUrl };
+      try {
+        await post(process.env.REACT_APP_API_URLS, urlData);
+        setUrls([
+          { text: 'shorten URL', url: shortUrl },
+          { text: 'statistics page', url: statisticsUrl },
+        ]);
+      } catch {
+        setError('Something went wrong.');
+      }
+    } else {
+      setUrls(null);
+      setError('Please enter correct URL.');
     }
   };
 
   return (
-    <>
-      <UrlForm handleFormSubmit={handleFormSubmit} />
+    <div className="front-page">
+      <UrlForm
+        className="front-page__form"
+        handleFormSubmit={handleFormSubmit}
+      />
       {urls && (
         <div>
           Result URLs: <UrlsList urls={urls} />
         </div>
       )}
       {error && <div>{error}</div>}
-    </>
+    </div>
   );
 }
 

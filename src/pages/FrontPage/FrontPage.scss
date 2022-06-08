@@ -1,0 +1,10 @@
+@import '../../common/styles/variables.scss';
+
+.front-page {
+    width: 500px;
+    margin: auto;
+
+    &__form {
+        margin-bottom: $default-indent;
+    }
+}
