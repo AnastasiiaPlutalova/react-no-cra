@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Chart from 'chart.js/auto';
 
+import './StatisticsPage.scss';
+
 const getChartConfig = (data) => ({
   type: 'bar',
   data,
@@ -44,7 +46,7 @@ function StatisticsPage() {
     new Chart(ctx, config);
   });
 
-  return <canvas id="clicksChart" />;
+  return <canvas className="statistics__canvas" id="clicksChart" />;
 }
 
 export default StatisticsPage;
