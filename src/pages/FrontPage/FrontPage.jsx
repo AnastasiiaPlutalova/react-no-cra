@@ -14,13 +14,13 @@ function FrontPage() {
 
       const hash = getRandomHash();
       const shortUrl = `${window.location.origin}/${hash}`;
-      const statisticsUrl = `${window.location.origin}/statistics/${hash}`;
+      const statisticUrl = `${window.location.origin}/statistic/${hash}`;
       const urlData = { originalUrl, shortUrl };
       try {
         await post(process.env.REACT_APP_API_URLS, urlData);
         setUrls([
           { text: 'shorten URL', url: shortUrl },
-          { text: 'statistics page', url: statisticsUrl },
+          { text: 'statistic page', url: statisticUrl },
         ]);
       } catch {
         setError('Something went wrong.');
