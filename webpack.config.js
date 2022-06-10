@@ -7,6 +7,9 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
   },
+  output: {
+    publicPath: '/'
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },

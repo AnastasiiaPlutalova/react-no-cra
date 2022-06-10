@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="statistics" element={<StatisticsPage />} />
+        <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="/:hash" element={<RedirectPage />} />
       </Routes>
     </BrowserRouter>
