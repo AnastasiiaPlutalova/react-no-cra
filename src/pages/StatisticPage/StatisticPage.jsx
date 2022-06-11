@@ -71,7 +71,7 @@ function StatisticPage() {
 
   return (
     error || (
-      <>
+      <div className="statistic-page">
         <canvas className="statistic__canvas" id="clicksChart" />
         <DeleteUrl
           url={shortUrl}
@@ -80,7 +80,7 @@ function StatisticPage() {
         />
         {isDeleted && <div>URL has been successfully deleted</div>}
         {!isDeleted && deleteError && <div>{deleteError}</div>}
-      </>
+      </div>
     )
   );
 }
