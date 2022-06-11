@@ -5,6 +5,7 @@ import Chart from 'chart.js/auto';
 import { get } from '../../common/utils';
 
 import './StatisticPage.scss';
+import DeleteUrl from '../../components/DeleteUrl/DeleteUrl';
 
 const getChartConfig = (data) => ({
   type: 'bar',
@@ -21,6 +22,8 @@ const getChartConfig = (data) => ({
 function StatisticPage() {
   const [clicks, setClicks] = useState();
   const [error, setError] = useState();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [deleteError, setDeleteError] = useState();
 
   const { search } = useLocation();
   const query = new URLSearchParams(search);
@@ -61,7 +64,25 @@ function StatisticPage() {
     }
   }, [clicks]);
 
-  return error || <canvas className="statistic__canvas" id="clicksChart" />;
+  const handleFailedDelete = () => {
+    setIsDeleted(false);
+    setDeleteError('Url was not deleted. Something went wrong.');
+  };
+
+  return (
+    error || (
+      <>
+        <canvas className="statistic__canvas" id="clicksChart" />
+        <DeleteUrl
+          url={shortUrl}
+          onSuccess={() => setIsDeleted(true)}
+          onFail={handleFailedDelete}
+        />
+        {isDeleted && <div>URL has been successfully deleted</div>}
+        {!isDeleted && deleteError && <div>{deleteError}</div>}
+      </>
+    )
+  );
 }
 
 export default StatisticPage;
