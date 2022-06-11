@@ -14,7 +14,7 @@ function FrontPage() {
 
       const hash = getRandomHash();
       const shortUrl = `${window.location.origin}/${hash}`;
-      const statisticUrl = `${window.location.origin}/statistic/${hash}`;
+      const statisticUrl = `${window.location.origin}/statistic?shortUrl=${shortUrl}`;
       const urlData = { originalUrl, shortUrl };
       try {
         await post(process.env.REACT_APP_API_URLS, urlData);
