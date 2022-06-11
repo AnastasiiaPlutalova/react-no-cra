@@ -37,7 +37,7 @@ function StatisticPage() {
         );
         setClicks(statistic);
       } catch (e) {
-        setError(e.message || e);
+        setError(e.message);
       }
     }
 
