@@ -1,0 +1,8 @@
+@import '../../common/styles/variables.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: $default-indent;
+}
