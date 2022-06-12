@@ -1,24 +1,31 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  mode: 'development',
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-  },
-  output: {
-    publicPath: '/'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
+  entry: {
+    app: './src/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new Dotenv(),
   ],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: './',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -32,11 +39,6 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
       },
     ],
   },
