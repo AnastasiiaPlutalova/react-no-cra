@@ -79,7 +79,7 @@ function StatisticPage() {
           onFail={handleFailedDelete}
         />
         {isDeleted && <div>URL has been successfully deleted</div>}
-        {!isDeleted && deleteError && <div>{deleteError}</div>}
+        {!error && !isDeleted && deleteError && <div>{deleteError}</div>}
       </div>
     )
   );
