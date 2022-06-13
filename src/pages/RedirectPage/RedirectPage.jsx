@@ -17,7 +17,7 @@ function RedirectPage() {
         const [today] = new Date(Date.now()).toISOString().split('T');
         const dateIndex = statistic.findIndex((item) => item.date === today);
         if (dateIndex === -1) {
-          statistic.push({ date: today, clicks: 0 });
+          statistic.push({ date: today, clicks: 1 });
         } else {
           statistic[dateIndex].clicks++;
         }
