@@ -1,0 +1,7 @@
+@import './common/styles/variables.scss';
+
+.app {
+    &__content {
+    padding: $default-indent;
+    }
+}
