@@ -7,9 +7,20 @@ import { get } from '../../common/utils';
 import './StatisticPage.scss';
 import DeleteUrl from '../../components/DeleteUrl/DeleteUrl';
 
-const getChartConfig = (data) => ({
+const getChartConfig = (labels, label, data) => ({
   type: 'bar',
-  data,
+  data: {
+    labels,
+    datasets: [
+      {
+        label,
+        data,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgb(75, 192, 192)',
+        borderWidth: 1,
+      },
+    ],
+  },
   options: {
     scales: {
       y: {
@@ -46,19 +57,12 @@ function StatisticPage() {
 
   useEffect(() => {
     if (clicks) {
-      const data = {
-        labels: clicks.map((item) => item.date),
-        datasets: [
-          {
-            label: `Clicks statistic for ${shortUrl}`,
-            data: clicks.map((item) => item.clicks),
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgb(75, 192, 192)',
-            borderWidth: 1,
-          },
-        ],
-      };
-      const config = getChartConfig(data);
+      const labels = clicks.map((item) => item.date);
+      const label = `Clicks statistic for ${shortUrl}`;
+      const data = clicks.map((item) => item.clicks);
+
+      const config = getChartConfig(labels, label, data);
+
       const ctx = document.getElementById('clicksChart');
       new Chart(ctx, config);
     }
@@ -72,7 +76,7 @@ function StatisticPage() {
   return (
     error || (
       <div className="statistic-page">
-        <canvas className="statistic__canvas" id="clicksChart" />
+        <canvas className="statistic-page__canvas" id="clicksChart" />
         <DeleteUrl
           url={shortUrl}
           onSuccess={() => setIsDeleted(true)}

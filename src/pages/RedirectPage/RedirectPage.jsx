@@ -30,11 +30,7 @@ function RedirectPage() {
     fetchData();
   }, []);
 
-  const loadingMessage = () => 'Loading...';
-
-  const redirectMessage = () => `${url} is opened in a new tab.`;
-
-  return error || (url ? redirectMessage() : loadingMessage());
+  return error || (url ? `${url} is opened in a new tab.` : 'Loading...');
 }
 
 export default RedirectPage;
