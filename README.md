@@ -28,3 +28,4 @@ HTML: `publick/index.html`
 * Refs: [refs](https://github.com/AnastasiiaPlutalova/react-no-cra/tree/ref)
   * Get data from file input after for submission,
   * Set focus on nested text input
+* [URL shortener](https://github.com/AnastasiiaPlutalova/react-no-cra/blob/url_shortener/README.md)
