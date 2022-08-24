@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SunSkirts } from './Pages';
 
+import './common/styles/normalize.scss';
+
 function App() {
   return (
     <BrowserRouter>
