@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+// TODO add calculation if L is greater than fabric width
+
 // TODO consider using Map instead of an object
 const SUN_SKIRT_TYPES = {
   SUN: {
@@ -30,9 +32,9 @@ const SUN_SKIRT_TYPES = {
 };
 
 function SunSkirts() {
-  const [skirtType, setSkirtType] = useState(null);
-  const [waist, setWaist] = useState(0);
-  const [length, setLength] = useState(0);
+  const [skirtType, setSkirtType] = useState(SUN_SKIRT_TYPES.SUN);
+  const [waist, setWaist] = useState(70);
+  const [length, setLength] = useState(80);
   const [radius, setRadius] = useState(0);
   const [fabric, setFabric] = useState(0);
   const [isCalculated, setIsCalculated] = useState(false);
@@ -76,11 +78,21 @@ function SunSkirts() {
       <div>{radioGroup}</div>
       <label htmlFor="waist">
         Waist
-        <input type="text" id="waist" onChange={handleWaistChange} />
+        <input
+          type="text"
+          id="waist"
+          value={waist}
+          onChange={handleWaistChange}
+        />
       </label>
       <label htmlFor="length">
         Length
-        <input type="text" id="length" onChange={handleLengthChange} />
+        <input
+          type="text"
+          id="length"
+          value={length}
+          onChange={handleLengthChange}
+        />
       </label>
       <button type="submit">Generate</button>
     </form>
@@ -95,14 +107,42 @@ function SunSkirts() {
     </div>
   );
 
+  const width = 450;
+  const centerH = width / 2;
+  const margin = 10;
+  const dotR = 3;
+
+  const svgSun = () => (
+    // eslint-disable-next-line react/style-prop-object
+    <svg height="400" width="450" style={{ border: '1px solid black' }}>
+      <path
+        d={`M 0 10 l ${width} 0`}
+        stroke="green"
+        strokeWidth="3"
+        fill="none"
+      />
+      <g stroke="black" strokeWidth="3" fill="black">
+        <circle id="pointO" cx={centerH} cy={margin} r={dotR} />
+        <circle id="pointW" cx={centerH + radius} cy={margin} r={dotR} />
+        <circle id="pointW1" cx={centerH - radius} cy={margin} r={dotR} />
+        <circle id="pointW2" cx={centerH} cy={margin + radius} r={dotR} />
+        <circle id="pointB" cx={centerH + fabric} cy={margin} r={dotR} />
+        <circle id="pointB1" cx={centerH - fabric} cy={margin} r={dotR} />
+        <circle id="pointB2" cx={centerH} cy={margin + fabric} r={dotR} />
+      </g>
+    </svg>
+  );
+
   return (
     <>
       <h2>Sun Skirts</h2>
       <p>description</p>
       {form()}
       {isCalculated && results()}
+      {svgSun()}
     </>
   );
 }
 
 export default SunSkirts;
+
